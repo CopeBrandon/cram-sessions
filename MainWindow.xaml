@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cram_sessions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Cram Sessions" Height="450" Width="800"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        >
+    <Grid Height="426" VerticalAlignment="Top">
+        <TextBlock x:Name="TitleText" TextWrapping="Wrap" Text="This is some example text for the purposes of determing what text looks like." VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.466,0.424" HorizontalAlignment="Center" Margin="0,100,0,0" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
+        <RadioButton x:Name="TestButton1" Content="TestButton1"                             Margin="200,250,0,0"  VerticalAlignment="Top" IsChecked="true"/>
+        <RadioButton x:Name="TestButton2" Content="TestButton2" HorizontalAlignment="Right" Margin="0,250,200,0"    VerticalAlignment="Top"/>
+        <Button x:Name="TestButton3" Content="Don't press this button." HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom" Click="TestButton3_Click"/>
+        <materialDesign:Snackbar Message="Hello World" IsActive="True" />
+        <materialDesign:Snackbar HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" IsEnabled="true">
+            <materialDesign:SnackbarMessage Content="Deleted Item" ActionContent="UNDO" />
+        </materialDesign:Snackbar>
     </Grid>
 </Window>
