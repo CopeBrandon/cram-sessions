@@ -1,48 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 
 namespace cram_sessions
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        int counterToHell = 0;
+{ 
+    public partial class MainWindow : INotifyPropertyChanged {
         public MainWindow()
         {
+            
+            DataContext = this;
             InitializeComponent();
         }
+        
+        private int _RestLengthSlider = 120;
+        public int RestLengthSlider {
+            get {
+                return _RestLengthSlider;
+            }
+            set { if (_RestLengthSlider != value) {
+                    _RestLengthSlider = value;
+                    OnPropertyChanged();
+                }}
+        }
+        private int _RestDurationValue;
+        public int RestDurationValue {
+            get { return _RestDurationValue; }
+            set { if (_RestDurationValue != value) {
+                    _RestDurationValue= value;
+                    OnPropertyChanged();
+                }}
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-        private void TestButton3_Click(object sender, RoutedEventArgs e) {
-            if (TestButton1.IsChecked == true) {
-                //MessageBox.Show("Hello.");
-                TitleText.Text += "Why'd you do that?";
-                counterToHell++;
-            } else if (TestButton2.IsChecked == true) {
-                //MessageBox.Show("Goodbye.");
-            }
-            if (counterToHell > 5) {
-                var psi = new ProcessStartInfo {
-                    FileName = "https://www.google.com/search?q=white+woman&tbm=isch",
-                    UseShellExecute = true
-                };
-                Process.Start(psi);
-            }
+        public void Run_Click(object sender, RoutedEventArgs e) {
+            return;
         }
     }
 }

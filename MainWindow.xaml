@@ -18,12 +18,31 @@
         >
     <Grid Height="426" VerticalAlignment="Top">
         <TextBlock x:Name="TitleText" TextWrapping="Wrap" Text="This is some example text for the purposes of determing what text looks like." VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.466,0.424" HorizontalAlignment="Center" Margin="0,100,0,0" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
-        <RadioButton x:Name="TestButton1" Content="TestButton1"                             Margin="200,250,0,0"  VerticalAlignment="Top" IsChecked="true"/>
-        <RadioButton x:Name="TestButton2" Content="TestButton2" HorizontalAlignment="Right" Margin="0,250,200,0"    VerticalAlignment="Top"/>
-        <Button x:Name="TestButton3" Content="Don't press this button." HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom" Click="TestButton3_Click"/>
-        <materialDesign:Snackbar Message="Hello World" IsActive="True" />
-        <materialDesign:Snackbar HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" IsEnabled="true">
-            <materialDesign:SnackbarMessage Content="Deleted Item" ActionContent="UNDO" />
-        </materialDesign:Snackbar>
+        <Button x:Name="TestButton3" Content="Don't press this button." HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom"/>
+        <materialDesign:Snackbar x:Name="Snackers"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="266">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="45"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox 
+                        Grid.Row="0" Grid.Column="0"
+                        FontSize="12"
+                        Text="{Binding Path=RestDurationValue}"
+                        VerticalAlignment="Center"
+                        Margin="10,10,10,10" HorizontalAlignment="Left"/>
+                <Slider x:Name="RestDurationSlider" 
+                        Grid.Row="0" Grid.Column="1"
+                        Margin="10,10,10,10" 
+                        AutoToolTipPlacement="TopLeft"
+                        Value="{Binding Path=RestDurationValue, Mode=OneWayToSource}"
+                        Maximum="{Binding Path=RestLengthSlider, Mode=TwoWay}"
+                        TickFrequency="5"
+                        IsSnapToTickEnabled="True"/>
+            </Grid>
+            <Button Content="Run" Click="Run_Click"/>
+        </StackPanel>
     </Grid>
+    
 </Window>
