@@ -15,7 +15,32 @@ namespace cram_sessions
             DataContext = this;
             InitializeComponent();
         }
-        
+        private int _SessionCount;
+        public int SessionCount {
+            get { return _SessionCount; }
+            set { if (_SessionCount!= value) {
+                    _SessionCount= value;
+                    OnPropertyChanged();
+            }}
+        }
+        private int _StudyLengthSlider = 120;
+        public int StudyLengthSlider {
+            get {
+                return _StudyLengthSlider;
+            }
+            set { if (_StudyLengthSlider != value) {
+                    _StudyLengthSlider = value;
+                    OnPropertyChanged();
+            }}
+        }
+        private int _StudyDurationValue;
+        public int StudyDurationValue {
+            get { return _StudyDurationValue; }
+            set { if (_StudyDurationValue != value) {
+                    _StudyDurationValue = value;
+                    OnPropertyChanged();
+            }}
+        }
         private int _RestLengthSlider = 120;
         public int RestLengthSlider {
             get {
@@ -34,13 +59,25 @@ namespace cram_sessions
                     OnPropertyChanged();
                 }}
         }
+        private int _Volume;
+        public int Volume {
+            get { return _Volume; }
+            set { if (_Volume != value) {
+                    _Volume= value;
+                    OnPropertyChanged();
+                }}
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void Run_Click(object sender, RoutedEventArgs e) {
-            return;
+            MessageBox.Show("SessionCount: " + SessionCount +
+                            "\nStudyDurationValue: " + StudyDurationValue +
+                            "\nRestDurationValue: " + RestDurationValue + 
+                            "\nVolume: " + Volume);
         }
     }
 }
