@@ -24,3 +24,4 @@ C:\Projects\c#\cram-sessions\obj\Release\net6.0-windows\refint\cram-sessions.dll
 C:\Projects\c#\cram-sessions\obj\Release\net6.0-windows\cram-sessions.pdb
 C:\Projects\c#\cram-sessions\obj\Release\net6.0-windows\cram-sessions.genruntimeconfig.cache
 C:\Projects\c#\cram-sessions\obj\Release\net6.0-windows\ref\cram-sessions.dll
+C:\Projects\c#\cram-sessions\bin\Release\net6.0-windows\Assets\Audio\tick.wav

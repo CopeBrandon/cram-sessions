@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/audio/tick.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/audio/tick.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/icon.ico")]
 
 

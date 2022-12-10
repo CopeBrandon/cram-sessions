@@ -4,14 +4,14 @@ using System.Diagnostics;
 using System.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using System.IO;
 
 namespace cram_sessions
 { 
     public partial class MainWindow : INotifyPropertyChanged {
+        private Pomodoro newPom = new Pomodoro(1, 1, 1, 1);
         public MainWindow()
         {
-            
             DataContext = this;
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace cram_sessions
             set { if (_SessionCount!= value) {
                     _SessionCount= value;
                     OnPropertyChanged();
-            }}
+                }}
         }
         private int _StudyLengthSlider = 120;
         public int StudyLengthSlider {
@@ -31,7 +31,7 @@ namespace cram_sessions
             set { if (_StudyLengthSlider != value) {
                     _StudyLengthSlider = value;
                     OnPropertyChanged();
-            }}
+                }}
         }
         private int _StudyDurationValue;
         public int StudyDurationValue {
@@ -39,7 +39,7 @@ namespace cram_sessions
             set { if (_StudyDurationValue != value) {
                     _StudyDurationValue = value;
                     OnPropertyChanged();
-            }}
+                }}
         }
         private int _RestLengthSlider = 120;
         public int RestLengthSlider {
@@ -67,9 +67,27 @@ namespace cram_sessions
                     OnPropertyChanged();
                 }}
         }
+        private string? _SpotifyURL=null;
+        public string? SpotifyURL {
+            get { return _SpotifyURL; }
+            set {
+                if (_SpotifyURL != value) {
+                    _SpotifyURL = value;
+                    OnPropertyChanged();
+                }}
+        }
+        private bool _isShuffle;
+        public bool isShuffle {
+            get { return _isShuffle; }
+            set {
+                if (_isShuffle != value) {
+                    _isShuffle = value;
+                    OnPropertyChanged();
+                }}
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -77,7 +95,10 @@ namespace cram_sessions
             MessageBox.Show("SessionCount: " + SessionCount +
                             "\nStudyDurationValue: " + StudyDurationValue +
                             "\nRestDurationValue: " + RestDurationValue + 
-                            "\nVolume: " + Volume);
+                            "\nVolume: " + Volume +
+                            "\nSpotifyURL: " + SpotifyURL +
+                            "\nisShuffle: " + isShuffle);
+            newPom.StartTimer();
         }
     }
 }

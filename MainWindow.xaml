@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cram_sessions"
         mc:Ignorable="d"
-        Title="Cram Sessions" Height="450" Width="800"
+        Title="Cram Sessions" Height="600" Width="800"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,18 +16,17 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         >
-    <Grid Height="426" VerticalAlignment="Top">
-        <TextBlock x:Name="TitleText" TextWrapping="Wrap" Text="This is some example text for the purposes of determing what text looks like." VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.466,0.424" HorizontalAlignment="Center" Margin="0,50,0,0" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
-        <Button x:Name="TestButton3" Content="Don't press this button." HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom"/>
+    <Grid Height="584" VerticalAlignment="Top">
         <materialDesign:Snackbar x:Name="Snackers"/>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="266">
+            <TextBlock x:Name="TitleText" TextWrapping="Wrap" Text="This is some example text for the purposes of determing what text looks like." VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.466,0.424" HorizontalAlignment="Center" Margin="0,50,0,0" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
             <TextBlock Text="Number of Sessions"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MaxWidth="45"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox 
+                <TextBlock 
                         Grid.Row="0" Grid.Column="0"
                         FontSize="12"
                         Text="{Binding Path=SessionCount}"
@@ -47,7 +46,7 @@
                     <ColumnDefinition MaxWidth="45"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox 
+                <TextBlock 
                         Grid.Row="0" Grid.Column="0"
                         FontSize="12"
                         Text="{Binding Path=StudyDurationValue}"
@@ -68,7 +67,7 @@
                     <ColumnDefinition MaxWidth="45"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox 
+                <TextBlock 
                         Grid.Row="0" Grid.Column="0"
                         FontSize="12"
                         Text="{Binding Path=RestDurationValue}"
@@ -89,7 +88,7 @@
                     <ColumnDefinition MaxWidth="45"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox 
+                <TextBlock 
                         Grid.Row="0" Grid.Column="0"
                         FontSize="12"
                         Text="{Binding Path=Volume}"
@@ -102,8 +101,35 @@
                         Value="{Binding Path=Volume, Mode=OneWayToSource}"
                         Maximum="100"/>
             </Grid>
-            <Button Content="Debug Show Variables Or Run Maybe" Click="Run_Click"/>
+            <TextBlock Text="Spotify URL(optional)"/>
+            <TextBox
+                Margin="10,10,10,10"
+                Text="{Binding Path=SpotifyURL, Mode=OneWayToSource}"                />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="Shuffle?"/>
+                <CheckBox
+                    Margin="10,0,0,0"
+                    Grid.Column="1"
+                    IsChecked="{Binding isShuffle, Mode=OneWayToSource}"
+                    />
+            </Grid>
+            <Button 
+                Margin="40,20,40,20"
+                Click="Run_Click"
+                Height="auto">
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Text="Debug Show Variables Or Run Maybe" 
+                    TextAlignment="Center"/>
+            </Button>
         </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="62,262,0,0" TextWrapping="Wrap" 
+                   Text="{Binding tickCounter, Mode=TwoWay}" VerticalAlignment="Top"/>
     </Grid>
     
 </Window>
