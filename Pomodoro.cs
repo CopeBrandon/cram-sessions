@@ -19,7 +19,7 @@ namespace cram_sessions
         private int _sessionCount = 0;
         private int _studyCount = 0;
         private int _RestLength;
-        private int _Volume;
+        private double _Volume;
         private String? _SpotifyUrl = null;
         private bool _isShuffled = false;
         
@@ -27,9 +27,9 @@ namespace cram_sessions
         private RepeatingTick _ticker = new RepeatingTick(TimeSpan.FromMilliseconds(500));
         private MediaPlayer _player = new();
 
-        public Pomodoro(int studyLength, int restLength, int numSessions, int volume) {
-            _StudyLength = studyLength * 60; //input in minutes, converts to seconds
-            _RestLength = restLength * 60;
+        public Pomodoro(int studyLength, int restLength, int numSessions, double volume) {
+            _StudyLength = studyLength * 5; //input in minutes, converts to seconds
+            _RestLength = restLength * 5;
             _NumSessions = numSessions;
             _Volume = volume;
             _player.Open(new Uri(@"Assets/Audio/Tick.wav", UriKind.Relative));
@@ -49,7 +49,10 @@ namespace cram_sessions
             _isShuffled = isShuffled;
         }
         public void StartTimer() { //todo: Figure out how to process tasks as they complete, and then count them so that you can only do so many in a row.
-                _ticker.Start(_player, _StudyLength);
+                                   // _ticker = new RepeatingTick(TimeSpan.FromMilliseconds(500));
+                                   // _ticker.Start(_player, _StudyLength);
+            TickPlayer tickPlayer = new(_StudyLength, _RestLength, _NumSessions, _Volume);
+            tickPlayer.Play();
         }
 
         public void StopTimer() {

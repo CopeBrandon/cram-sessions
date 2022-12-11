@@ -59,11 +59,11 @@ namespace cram_sessions
                     OnPropertyChanged();
                 }}
         }
-        private int _Volume;
-        public int Volume {
+        private double _Volume;
+        public double Volume {
             get { return _Volume; }
-            set { if (_Volume != value) {
-                    _Volume= value;
+            set { if (_Volume != value / 100) {
+                    _Volume = value / 100;
                     OnPropertyChanged();
                 }}
         }
@@ -98,6 +98,7 @@ namespace cram_sessions
                             "\nVolume: " + Volume +
                             "\nSpotifyURL: " + SpotifyURL +
                             "\nisShuffle: " + isShuffle);
+            newPom = new(StudyDurationValue, RestDurationValue, SessionCount, Volume);
             newPom.StartTimer();
         }
     }

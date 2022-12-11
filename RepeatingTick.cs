@@ -25,7 +25,7 @@ namespace cram_sessions {
             _timerTask = DoWorkAsync(player, sessionLength);
         }
 
-        private async Task DoWorkAsync(MediaPlayer player, int sessionLength) {
+        public async Task DoWorkAsync(MediaPlayer player, int sessionLength) {
                 try {
                 while (await _timer.WaitForNextTickAsync(_cts.Token)) {
                         if (_ticks < sessionLength / 2) {
@@ -34,8 +34,8 @@ namespace cram_sessions {
                             _ticks++;
                         }
                         else {
-                                _ = StopAsync();
-                                break;
+                            _ = StopAsync();
+                            break;
                         }
                     }
 
